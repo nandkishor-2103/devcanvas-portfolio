@@ -32,7 +32,7 @@ sanity/
 Clone the repository:
 
 ```
-git clone https://github.com/YOUR_USERNAME/devcanvas-portfolio.git
+git clone https://github.com/nandkishor-2103/devcanvas-portfolio.git
 ```
 
 Install dependencies:
