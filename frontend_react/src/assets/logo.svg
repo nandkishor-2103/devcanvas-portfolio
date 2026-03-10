@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="450" height="80" viewBox="0 0 450 80">
+
+<!-- The </> Icon -->
+<text x="10" y="50"
+font-family="monospace"
+font-size="36"
+font-weight="700"
+fill="#3a3a3a">
+&lt;/&gt;
+</text>
+
+<!-- "NAND" portion matching the dark color of the icon -->
+<text x="80" y="50"
+font-family="Poppins, Arial"
+font-size="32"
+font-weight="600"
+letter-spacing="2"
+fill="#3a3a3a">
+NAND
+</text>
+
+<!-- "KISHOR" portion matching the primary blue portfolio color so it stands out on white -->
+<text x="180" y="50"
+font-family="Poppins, Arial"
+font-size="32"
+font-weight="600"
+letter-spacing="2"
+fill="#313bac">
+KISHOR
+</text>
+
+</svg>
