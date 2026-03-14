@@ -1,61 +1,60 @@
-# DevCanvas
+# Nandkishor | Fullstack Developer Portfolio
 
-DevCanvas is my personal dynamic developer portfolio built using ReactJS, SCSS, and Sanity CMS.
-It showcases my projects, skills, and experience in a clean and modern light-mode design.
+DevCanvas is a high-performance, minimalist developer portfolio tailored for a fresher Fullstack Developer role. Built with the MERN Stack, it emphasizes clean code, technical excellence in C++ &amp; DSA, and a premium user experience.
 
-## 🚀 Tech Stack
+## 🚀 Project Tech Stack
 
-- ReactJS
-- SCSS
-- Sanity CMS
-- JavaScript
+This portfolio is built using:
 
-## ✨ Features
+- **Frontend:** React.js
+- **Styling:** SCSS (Sass)
+- **CMS (Backend):** Sanity.io
+- **Icons:** React Icons
 
-- Dynamic portfolio content using Sanity CMS
-- Responsive design
-- Clean light-mode UI
-- Easy future updates from CMS
+## ✨ Key Features
+
+- **Isometric Developer Illustration**: A custom, high-quality SVG illustration replacing traditional profile photos for a technical aesthetic.
+- **Dynamic Content**: Portfolio projects, skills, and education are fully managed via the Sanity.io Studio.
+- **Project Filtering**: Interactive project showcase with category-based filtering (MERN, Frontend, C++).
+- **Modern UI/UX**: Glassmorphism elements, smooth transitions, and a mobile-responsive layout.
+- **Social Integration**: Direct links to GitHub, LinkedIn, and social profiles.
 
 ## 📂 Project Structure
 
-```
-src/
-components/
-container/
-assets/
-sanity/
+```text
+devcanvas-portfolio/
+├── frontend_react/    # React frontend with SCSS styling
+└── backend_sanity/    # Sanity.io backend schemas and CMS config
 ```
 
-## ⚙️ Installation
+## ⚙️ How to Run Locally
 
-Clone the repository:
-
-```
+### 1. Clone the repository
+```bash
 git clone https://github.com/nandkishor-2103/devcanvas-portfolio.git
+cd devcanvas-portfolio
 ```
 
-Install dependencies:
-
-```
+### 2. Frontend Setup
+```bash
+cd frontend_react
 npm install
-```
-
-Run the project:
-
-```
 npm start
 ```
 
-## 📌 Future Improvements
+### 3. Backend Setup (Sanity)
+```bash
+cd ../backend_sanity
+npm install
+npm run dev
+```
 
-- Blog section
-- Project filtering
-- Dark mode
-- Animations
+## 👨‍💻 About the Author
 
-## 👨‍💻 Author
+**Nandkishor Mandal**  
+*Fresher Fullstack Developer | C++ & DSA Enthusiast*  
+BTech Computer Science Student  
+Centurion University of Technology and Management
 
-Nandkishor
-BTech Computer Science Student
-Centurion University of Technology
+---
+*Built with ❤️ to showcase technical growth and project excellence.*
