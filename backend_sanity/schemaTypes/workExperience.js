@@ -1,16 +1,16 @@
 export default {
     name:'workExperience',
-    title:'Work Experience',
+    title:'Education Details',
     type:'document',
     fields:[
             {
                 name:'name',
-                title:'name',
+                title:'Degree / Position',
                 type:'string'
             },
             {
                 name:'company',
-                title:'Company',
+                title:'Institution / Organization',
                 type:'string'
             },
             {

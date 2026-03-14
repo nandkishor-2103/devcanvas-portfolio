@@ -1,6 +1,6 @@
 export default{
     name:'experiences',
-    title:'Experiences',
+    title:'Education & Activities',
     type: 'document',
     fields:[
         {
@@ -10,7 +10,7 @@ export default{
         },
         {
             name:'works',
-            title:'Works',
+            title:'Programs / Projects',
             type:'array',
             of:[{ type:'workExperience'}]
         },

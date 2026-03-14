@@ -21,7 +21,7 @@ const About = () => {
     return (
         <>
             <h2 className='head-text'>
-                I know that <span>Good Design</span> meant <br /> <span>Good Business</span>
+                A Passionate <span>Fullstack Developer</span> building <br /> <span>Scalable</span> Web Applications
             </h2>
 
             <div className='app__profiles'>
