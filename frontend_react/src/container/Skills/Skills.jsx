@@ -18,11 +18,11 @@ const Skills = () => {
 
         client.fetch(query).then(data => {
             setExperiences(data);
-        });
+        }).catch(err => console.log(err));
 
         client.fetch(skillsQuery).then(data => {
             setSkills(data);
-        });
+        }).catch(err => console.log(err));
     }, []);
 
     return (
@@ -65,11 +65,8 @@ const Skills = () => {
                                         </motion.div>
                                         <Tooltip
                                             id={work.name}
-                                            effect='solid'
-                                            arrowColor='#fff'
-                                            className='skills-tooltip'>
-                                                {work.desc}
-                                            </Tooltip>
+                                            className='skills-tooltip'
+                                        />
                                     </React.Fragment>
                                 ))}
                             </motion.div>
