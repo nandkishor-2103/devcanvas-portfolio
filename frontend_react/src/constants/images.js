@@ -27,6 +27,8 @@ import profile from '../assets/profile.png';
 import circle from '../assets/circle.svg';
 import logo from '../assets/logo.svg';
 import developer_illustration from '../assets/developer_illustration.svg';
+import profile_image from '../assets/profile-image.png';
+
 
 import adidas from '../assets/adidas.png';
 import amazon from '../assets/amazon.png';
@@ -35,6 +37,7 @@ import bolt from '../assets/bolt.png';
 import nb from '../assets/nb.png';
 import skype from '../assets/skype.png';
 import spotify from '../assets/spotify.png';
+import { image } from 'framer-motion/client';
 
 const images = {
     email,
@@ -64,6 +67,7 @@ const images = {
     circle,
     logo,
     developer_illustration,
+    profile_image,
     adidas,
     amazon,
     asus,

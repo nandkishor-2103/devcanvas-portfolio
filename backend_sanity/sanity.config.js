@@ -7,7 +7,7 @@ export default defineConfig({
   name: 'default',
   title: 'DevCanvas',
 
-  projectId: 'tbn8cfx9',
+  projectId: 'w1n3n0q1',
   dataset: 'production',
 
   plugins: [structureTool(), visionTool()],
