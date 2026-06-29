@@ -20,15 +20,28 @@ const Footer = () => {
     const handleChangeInput = e => {
         const { name, value } = e.target;
 
-        setFormData({
-            ...formData,
+        setFormData(prev => ({
+            ...prev,
             [name]: value,
-        });
+        }));
+    };
+
+    const handleEmailClick = e => {
+        e.preventDefault();
+
+        window.location.href = 'mailto:mandalnandkishorbk@gmail.com?subject=Portfolio Inquiry';
     };
 
     const handleSubmit = async () => {
-        if (!username || !email || !message) {
+        if (!username.trim() || !email.trim() || !message.trim()) {
             alert('Please fill all fields');
+            return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailRegex.test(email)) {
+            alert('Please enter valid email');
             return;
         }
 
@@ -51,6 +64,7 @@ const Footer = () => {
 
             if (result.success) {
                 setIsFormSubmitted(true);
+
                 setFormData({
                     username: '',
                     email: '',
@@ -62,9 +76,9 @@ const Footer = () => {
         } catch (error) {
             console.log(error);
             alert('Something went wrong');
+        } finally {
+            setLoading(false);
         }
-
-        setLoading(false);
     };
 
     return (
@@ -80,7 +94,7 @@ const Footer = () => {
             </div>
 
             <div className='app__footer-cards'>
-                <a href='mailto:mandalnandkishorbk@gmail.com?subject=Portfolio Inquiry' className='app__footer-card'>
+                <a href='mailto:mandalnandkishorbk@gmail.com' onClick={handleEmailClick} className='app__footer-card'>
                     <img src={images.email} alt='email' />
                     <span className='p-text'>mandalnandkishorbk@gmail.com</span>
                 </a>
@@ -125,7 +139,7 @@ const Footer = () => {
                         />
                     </div>
 
-                    <button type='button' onClick={handleSubmit}>
+                    <button type='button' onClick={handleSubmit} disabled={loading}>
                         {loading ? 'Sending...' : 'Send Message'}
                     </button>
                 </div>
