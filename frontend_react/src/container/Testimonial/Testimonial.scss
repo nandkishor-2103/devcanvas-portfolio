@@ -4,6 +4,18 @@
     flex-direction: column;
 }
 
+.app__testimonial-header {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    p {
+        margin-top: 1rem;
+        color: var(--gray-color);
+        max-width: 650px;
+        margin-inline: auto;
+    }
+}
+
 .app__testimonial-item {
     width: 60%;
     min-height: 320px;
@@ -11,9 +23,8 @@
     display: flex;
     flex-direction: row;
     padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
-
+    border-radius: 20px;
+    box-shadow: 0px 10px 35px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease-in-out;
 
     img {
@@ -23,27 +34,22 @@
         object-fit: cover;
     }
 
-    @media screen and (min-width: 2000px) {
-        min-height: 450px;
-
-        img {
-            width: 150px;
-            height: 150px;
-        }
-    }
-
     @media screen and (max-width: 850px) {
         width: 100%;
     }
 
     @media screen and (max-width: 600px) {
         flex-direction: column;
+        text-align: center;
+
+        img {
+            margin-bottom: 1rem;
+        }
     }
 }
 
 .app__testimonial-content {
     flex: 1;
-    height: 100%;
     padding: 0 2rem;
     text-align: left;
 
@@ -53,15 +59,10 @@
     align-items: flex-start;
 
     p {
-        font-size: 1.25rem;
-        line-height: 2rem;
+        font-size: 1.1rem;
+        line-height: 1.8rem;
         color: var(--black-color);
         font-family: var(--font-base);
-
-        @media screen and (min-width: 2000px) {
-            font-size: 2rem;
-            line-height: 3.5rem;
-        }
     }
 
     h4 {
@@ -77,22 +78,25 @@
     }
 
     @media screen and (max-width: 600px) {
-        margin-top: 2rem;
+        margin-top: 1rem;
         padding: 0;
+        align-items: center;
+        text-align: center;
     }
 }
 
 .app__testimonial-btns {
     flex-direction: row;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
 
     div {
         width: 50px;
         height: 50px;
         border-radius: 50%;
         background-color: var(--white-color);
-
         margin: 1rem;
+        cursor: pointer;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
         transition: all 0.3s ease-in-out;
 
         svg {
@@ -108,23 +112,13 @@
                 color: var(--white-color);
             }
         }
-
-        @media screen and (min-width: 2000px) {
-            width: 100px;
-            height: 100px;
-
-            svg {
-                width: 45px;
-                height: 45px;
-            }
-        }
     }
 }
 
 .app__testimonial-brands {
     width: 80%;
     flex-wrap: wrap;
-    margin-top: 2rem;
+    margin-top: 3rem;
 
     div {
         width: 150px;
@@ -133,19 +127,14 @@
         img {
             width: 100%;
             height: auto;
-            object-fit: cover;
+            object-fit: contain;
             filter: grayscale(1);
+            transition: all 0.3s ease;
         }
 
-        &:hover {
-            img {
-                filter: grayscale(0);
-            }
-        }
-
-        @media screen and (min-width: 2000px) {
-            width: 210px;
-            margin: 2rem;
+        &:hover img {
+            filter: grayscale(0);
+            transform: scale(1.05);
         }
 
         @media screen and (max-width: 450px) {
