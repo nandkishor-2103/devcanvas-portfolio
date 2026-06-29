@@ -32,9 +32,16 @@ const Header = () => {
                         </div>
                     </div>
 
-                    <div className='tag-cmp app__flex'>
-                        <p className='p-text'>Fullstack Developer</p>
-                        <p className='p-text'>CS Student & DSA Enthusiast</p>
+                    <div className='tag-wrapper'>
+                        <div className='open-work app__flex'>
+                            <span className='status-dot'></span>
+                            <p>Open to Work</p>
+                        </div>
+
+                        <div className='tag-cmp app__flex'>
+                            <p className='role-text'>MERN Stack Developer</p>
+                            <p className='stack-text'>React | Node.js | MongoDB</p>
+                        </div>
                     </div>
                 </div>
             </motion.div>
@@ -43,7 +50,7 @@ const Header = () => {
                 whileInView={{ opacity: [0, 1] }}
                 transition={{ duration: 0.5, delayChildren: 0.5 }}
                 className='app__header-img'>
-                <img src={images.developer_illustration} alt='developer_illustration' />
+                <img src={images.my_profile} alt='profile' className='profile-img' />
 
                 <motion.img
                     whileInView={{ scale: [0, 1] }}

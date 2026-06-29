@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { urlFor, client } from '../../client';
-import {AppWrap, MotionWrap} from '../../wrapper';
+import { AppWrap, MotionWrap } from '../../wrapper';
 
 import './About.scss';
-
-
 
 const About = () => {
     const [abouts, setAbouts] = useState([]);
@@ -13,15 +11,19 @@ const About = () => {
     useEffect(() => {
         const query = '*[_type == "abouts"]';
 
-        client.fetch(query).then(data => {
-            setAbouts(data);
-        }).catch(err => console.log(err));
+        client
+            .fetch(query)
+            .then(data => {
+                setAbouts(data);
+            })
+            .catch(err => console.log(err));
     }, []);
 
     return (
         <>
             <h2 className='head-text'>
-                A Passionate <span>Fullstack Developer</span> building <br /> <span>Scalable</span> Web Applications
+                MERN Stack <span>Developer</span> Building <br />
+                Modern Web Applications
             </h2>
 
             <div className='app__profiles'>

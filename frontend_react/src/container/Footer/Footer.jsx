@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
+
 import { images } from '../../constants';
 import { AppWrap, MotionWrap } from '../../wrapper';
-import { client } from '../../client';
 
 import './Footer.scss';
 
 const Footer = () => {
-    const [formData, setFormData] = useState({ username: '', email: '', message: '' });
+    const [formData, setFormData] = useState({
+        username: '',
+        email: '',
+        message: '',
+    });
+
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -14,45 +19,76 @@ const Footer = () => {
 
     const handleChangeInput = e => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
+        if (!username || !email || !message) {
+            alert('Please fill all fields');
+            return;
+        }
+
         setLoading(true);
 
-        const contact = {
-            _type: 'contact',
-            name: formData.username,
-            email: formData.email,
-            message: formData.message,
-        };
+        const web3FormData = new FormData();
+        web3FormData.append('access_key', 'e56f99e2-6e78-4da9-af39-d96b48e15f6f');
+        web3FormData.append('name', username);
+        web3FormData.append('email', email);
+        web3FormData.append('message', message);
+        web3FormData.append('subject', `New Portfolio Message from ${username}`);
 
-        client
-            .create(contact)
-            .then(() => {
-                setLoading(false);
+        try {
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: web3FormData,
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
                 setIsFormSubmitted(true);
-            })
-            .catch(err => console.log(err));
+                setFormData({
+                    username: '',
+                    email: '',
+                    message: '',
+                });
+            } else {
+                alert('Failed to send message');
+            }
+        } catch (error) {
+            console.log(error);
+            alert('Something went wrong');
+        }
+
+        setLoading(false);
     };
 
     return (
         <>
-            <h2 className='head-text'>Take a coffee & chat with me</h2>
+            <div className='app__footer-heading'>
+                <h2 className='head-text'>
+                    Let’s <span>Connect</span>
+                </h2>
+
+                <p className='p-text contact-subtext'>
+                    Looking for a dedicated developer? Let’s discuss how I can contribute to your team.
+                </p>
+            </div>
 
             <div className='app__footer-cards'>
-                <div className='app__footer-card'>
+                <a href='mailto:mandalnandkishorbk@gmail.com?subject=Portfolio Inquiry' className='app__footer-card'>
                     <img src={images.email} alt='email' />
-                    <a href='mailto:mandalnandkishorbk@gmail.com' className='p-text'>
-                        mandalnandkishorbk@gmail.com
-                    </a>
-                </div>
-                <div className='app__footer-card'>
+                    <span className='p-text'>mandalnandkishorbk@gmail.com</span>
+                </a>
+
+                <a href='tel:+917400250689' className='app__footer-card'>
                     <img src={images.mobile} alt='mobile' />
-                    <a href='tel: +91 7400250689' className='p-text'>
-                        +91 7400250689
-                    </a>
-                </div>
+                    <span className='p-text'>+91 7400250689</span>
+                </a>
             </div>
 
             {!isFormSubmitted ? (
@@ -67,6 +103,7 @@ const Footer = () => {
                             onChange={handleChangeInput}
                         />
                     </div>
+
                     <div className='app__flex'>
                         <input
                             className='p-text'
@@ -81,19 +118,21 @@ const Footer = () => {
                     <div>
                         <textarea
                             className='p-text'
+                            name='message'
                             placeholder='Your Message'
                             value={message}
-                            name='message'
                             onChange={handleChangeInput}
                         />
                     </div>
-                    <button type='button' className='p-text' onClick={handleSubmit}>
-                        {loading ? 'Sending' : 'Send Message'}
+
+                    <button type='button' onClick={handleSubmit}>
+                        {loading ? 'Sending...' : 'Send Message'}
                     </button>
                 </div>
             ) : (
-                <div>
-                    <h3 className='head-text'>Thank you for getting in touch!</h3>
+                <div className='success-message'>
+                    <h3 className='head-text'>Message Sent Successfully 🚀</h3>
+                    <p className='p-text'>Thanks for reaching out. I’ll get back to you soon.</p>
                 </div>
             )}
         </>

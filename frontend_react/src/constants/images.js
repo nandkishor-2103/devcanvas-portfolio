@@ -28,7 +28,9 @@ import circle from '../assets/circle.svg';
 import logo from '../assets/logo.svg';
 import developer_illustration from '../assets/developer_illustration.svg';
 import profile_image from '../assets/profile-image.png';
-
+import my_profile from '../assets/my-profile.png';
+import cv_resume from '../assets/cv-square.png';
+import linkedin from '../assets/linkedin-with-circle.png';
 
 import adidas from '../assets/adidas.png';
 import amazon from '../assets/amazon.png';
@@ -67,6 +69,7 @@ const images = {
     circle,
     logo,
     developer_illustration,
+    my_profile,
     profile_image,
     adidas,
     amazon,
@@ -75,6 +78,8 @@ const images = {
     nb,
     skype,
     spotify,
+    cv_resume,
+    linkedin,
 };
 
 export default images;

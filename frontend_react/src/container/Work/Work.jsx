@@ -43,7 +43,7 @@ const Work = () => {
             </h2>
 
             <div className='app__work-filter'>
-                {['MERN Stack', 'Frontend', 'Backend', 'C++', 'All'].map((item, index) => (
+                {['MERN Stack', 'Frontend', 'Backend', 'All'].map((item, index) => (
                     <div
                         key={index}
                         onClick={() => handleWorkFilter(item)}
