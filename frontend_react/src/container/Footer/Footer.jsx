@@ -35,7 +35,7 @@ const Footer = () => {
         setLoading(true);
 
         const web3FormData = new FormData();
-        web3FormData.append('access_key', 'e56f99e2-6e78-4da9-af39-d96b48e15f6f');
+        web3FormData.append('access_key', import.meta.env.VITE_WEB3FORMS_ACCESS_KEY);
         web3FormData.append('name', username);
         web3FormData.append('email', email);
         web3FormData.append('message', message);
