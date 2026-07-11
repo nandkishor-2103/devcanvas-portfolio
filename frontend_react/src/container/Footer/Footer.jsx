@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 
 import { images } from '../../constants';
 import { AppWrap, MotionWrap } from '../../wrapper';
@@ -17,42 +18,55 @@ const Footer = () => {
 
     const { username, email, message } = formData;
 
-    const handleChangeInput = e => {
-        const { name, value } = e.target;
+    const handleChangeInput = event => {
+        const { name, value } = event.target;
 
-        setFormData(prev => ({
-            ...prev,
+        setFormData(previousData => ({
+            ...previousData,
             [name]: value,
         }));
     };
 
-    const handleEmailClick = e => {
-        e.preventDefault();
+    const handleEmailClick = event => {
+        event.preventDefault();
 
         window.location.href = 'mailto:mandalnandkishorbk@gmail.com?subject=Portfolio Inquiry';
     };
 
     const handleSubmit = async () => {
-        if (!username.trim() || !email.trim() || !message.trim()) {
-            alert('Please fill all fields');
+        const trimmedUsername = username.trim();
+        const trimmedEmail = email.trim();
+        const trimmedMessage = message.trim();
+
+        if (!trimmedUsername || !trimmedEmail || !trimmedMessage) {
+            toast.error('Please fill in all the fields.');
             return;
         }
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        if (!emailRegex.test(email)) {
-            alert('Please enter valid email');
+        if (!emailRegex.test(trimmedEmail)) {
+            toast.error('Please enter a valid email address.');
+            return;
+        }
+
+        const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+
+        if (!accessKey) {
+            toast.error('Contact form is currently unavailable.');
+            console.error('VITE_WEB3FORMS_ACCESS_KEY is missing.');
             return;
         }
 
         setLoading(true);
 
         const web3FormData = new FormData();
-        web3FormData.append('access_key', import.meta.env.VITE_WEB3FORMS_ACCESS_KEY);
-        web3FormData.append('name', username);
-        web3FormData.append('email', email);
-        web3FormData.append('message', message);
-        web3FormData.append('subject', `New Portfolio Message from ${username}`);
+
+        web3FormData.append('access_key', accessKey);
+        web3FormData.append('name', trimmedUsername);
+        web3FormData.append('email', trimmedEmail);
+        web3FormData.append('message', trimmedMessage);
+        web3FormData.append('subject', `New Portfolio Message from ${trimmedUsername}`);
 
         try {
             const response = await fetch('https://api.web3forms.com/submit', {
@@ -62,20 +76,23 @@ const Footer = () => {
 
             const result = await response.json();
 
-            if (result.success) {
-                setIsFormSubmitted(true);
-
-                setFormData({
-                    username: '',
-                    email: '',
-                    message: '',
-                });
-            } else {
-                alert('Failed to send message');
+            if (!response.ok || !result.success) {
+                throw new Error(result.message || 'Message submission failed.');
             }
+
+            toast.success('Message sent successfully!');
+
+            setIsFormSubmitted(true);
+
+            setFormData({
+                username: '',
+                email: '',
+                message: '',
+            });
         } catch (error) {
-            console.log(error);
-            alert('Something went wrong');
+            console.error('Contact form submission error:', error);
+
+            toast.error('Unable to send your message. Please try again shortly.');
         } finally {
             setLoading(false);
         }
@@ -95,12 +112,14 @@ const Footer = () => {
 
             <div className='app__footer-cards'>
                 <a href='mailto:mandalnandkishorbk@gmail.com' onClick={handleEmailClick} className='app__footer-card'>
-                    <img src={images.email} alt='email' />
+                    <img src={images.email} alt='' />
+
                     <span className='p-text'>mandalnandkishorbk@gmail.com</span>
                 </a>
 
                 <a href='tel:+917400250689' className='app__footer-card'>
-                    <img src={images.mobile} alt='mobile' />
+                    <img src={images.mobile} alt='' />
+
                     <span className='p-text'>+91 7400250689</span>
                 </a>
             </div>
@@ -115,6 +134,8 @@ const Footer = () => {
                             placeholder='Your Name'
                             value={username}
                             onChange={handleChangeInput}
+                            autoComplete='name'
+                            disabled={loading}
                         />
                     </div>
 
@@ -126,6 +147,8 @@ const Footer = () => {
                             placeholder='Your Email'
                             value={email}
                             onChange={handleChangeInput}
+                            autoComplete='email'
+                            disabled={loading}
                         />
                     </div>
 
@@ -136,16 +159,18 @@ const Footer = () => {
                             placeholder='Your Message'
                             value={message}
                             onChange={handleChangeInput}
+                            disabled={loading}
                         />
                     </div>
 
-                    <button type='button' onClick={handleSubmit} disabled={loading}>
+                    <button type='button' onClick={handleSubmit} disabled={loading} aria-busy={loading}>
                         {loading ? 'Sending...' : 'Send Message'}
                     </button>
                 </div>
             ) : (
-                <div className='success-message'>
+                <div className='success-message' role='status'>
                     <h3 className='head-text'>Message Sent Successfully 🚀</h3>
+
                     <p className='p-text'>Thanks for reaching out. I’ll get back to you soon.</p>
                 </div>
             )}
