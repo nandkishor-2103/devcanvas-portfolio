@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 
 import './Navbar.scss';
 import { images } from '../../constants';
+import resumePdf from "../../assets/nandkishor_resume.pdf";
 
 const sections = ['home', 'about', 'work', 'skills', 'testimonials', 'contact'];
 
@@ -47,7 +48,7 @@ const Navbar = () => {
             </ul>
 
             <div className='app__navbar-right'>
-                <a href='/resume.pdf' download className='resume-btn'>
+                <a href={resumePdf} download='Nandkishor_Resume.pdf' className='resume-btn'>
                     Resume <HiDownload />
                 </a>
 
