@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 import './Navbar.scss';
 import { images } from '../../constants';
-import resumePdf from "../../assets/nandkishor_resume.pdf";
+import resumePdf from "../../assets/nandkishor_resume_01.pdf";
 
 const sections = ['home', 'about', 'work', 'skills', 'testimonials', 'contact'];
 
